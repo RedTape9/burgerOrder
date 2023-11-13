@@ -38,16 +38,23 @@ public class OrderSystem {
     }
 
     public void displayOrdersAndTotal() {
-        double total = 0;
         System.out.println("Ihre Bestellungen:");
         for (Menu order : orders) {
             System.out.println(order);
-            total += order.getPrice();
         }
+        double total = calculateTotal();
         System.out.println("Gesamtsumme: " + total + " Euro");
     }
 
     public void displayMenus() {
         menus.forEach((id, menu) -> System.out.println("Menü " + id + ": " + menu));
+    }
+
+    public double calculateTotal() {
+        double total = 0;
+        for (Menu order : orders) {
+            total += order.getPrice();
+        }
+        return total;
     }
 }
